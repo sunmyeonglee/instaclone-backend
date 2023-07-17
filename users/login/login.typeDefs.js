@@ -1,12 +1,13 @@
-import { gql } from "apollo-server";
-
-export default gql`
+const typeDefs = `#graphql
   type LoginResult {
     ok: Boolean!
     token: String
     error: String
   }
+
   type Mutation {
-    login(username: String!, password: String!): LoginResult!
+    login(username: String!, password: String!): LoginResult
   }
 `;
+
+export default typeDefs;

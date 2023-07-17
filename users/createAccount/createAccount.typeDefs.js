@@ -1,10 +1,9 @@
-import { gql } from "apollo-server";
-
-export default gql`
+const typeDefs = `#graphql
   type CreateAccountResult {
     ok: Boolean!
     error: String
   }
+
   type Mutation {
     createAccount(
       firstName: String!
@@ -12,6 +11,8 @@ export default gql`
       username: String!
       email: String!
       password: String!
-    ): CreateAccountResult!
+    ): CreateAccountResult
   }
 `;
+
+export default typeDefs;

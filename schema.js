@@ -1,13 +1,24 @@
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { loadFilesSync } from "@graphql-tools/load-files";
+import path from "path";
+import url from "url";
+import { loadFiles } from "@graphql-tools/load-files";
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
 
-const loadedTypes = loadFilesSync(`${__dirname}/**/*.typeDefs.js`);
-const loadedResolvers = loadFilesSync(`${__dirname}/**/*.resolvers.js`);
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const typeDefs = mergeTypeDefs(loadedTypes);
-const resolvers = mergeResolvers(loadedResolvers);
+const loadedTypeDefs = await loadFiles(`${__dirname}/**/*.typeDefs.js`, {
+  ignoreIndex: true,
+  requireMethod: async (path) => {
+    return await import(url.pathToFileURL(path));
+  },
+});
 
-const schema = makeExecutableSchema({ typeDefs, resolvers });
+const loadedResolvers = await loadFiles(`${__dirname}/**/*.resolvers.js`, {
+  ignoreIndex: true,
+  requireMethod: async (path) => {
+    return await import(url.pathToFileURL(path));
+  },
+});
 
-export default schema;
+export const typeDefs = mergeTypeDefs(loadedTypeDefs);
+export const resolvers = mergeResolvers(loadedResolvers);
