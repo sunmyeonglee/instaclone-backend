@@ -9,6 +9,8 @@ const typeDefs = `#graphql
     updatedAt: String!
     bio: String
     avatar: String
+    following: [User]
+    followers: [User]
   }
 `;
 
