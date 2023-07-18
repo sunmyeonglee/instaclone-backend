@@ -6,12 +6,12 @@ import express from "express";
 import http from "http";
 import cors from "cors";
 import pkg from "body-parser";
-const { json } = pkg;
 import { typeDefs, resolvers } from "./schema.js";
 import { getUser } from "./users/users.utils.js";
 import logger from "morgan";
 import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
 
+const { json } = pkg;
 const app = express();
 const PORT = process.env.PORT;
 const httpServer = http.createServer(app);
