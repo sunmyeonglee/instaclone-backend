@@ -4,11 +4,8 @@ const typeDefs = `#graphql
     ok: Boolean!
     error: String
   }
-
   type Mutation {
-    followUser(
-      username: String!
-    ): FollowUserResult
+    followUser(username: String!): FollowUserResult
   }
 `;
 

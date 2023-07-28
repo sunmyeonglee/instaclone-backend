@@ -7,10 +7,11 @@ export default {
         where: {
           username,
         },
-        // include: {
-        //   following: true,
-        //   followers: true,
-        // },
+        include: {
+          following: true,
+          followers: true
+        }
       }),
+
   },
 };
