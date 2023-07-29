@@ -5,7 +5,8 @@ const typeDefs = `#graphql
     file: String!
     caption: String
     hashtags: [Hashtag]
-    comments: Int!
+    commentNumber: Int!
+    comments: [Comment]
     createdAt: String!
     updatedAt: String!
     likes: Int!

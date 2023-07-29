@@ -11,8 +11,16 @@ export default {
     likes: ({ id }) => {
       return client.like.count({ where: { photoId: id } });
     },
-    comments: ({ id }) => {
+    commentNumber: ({ id }) => {
       return client.comment.count({ where: { photoId: id } });
+    },
+    comments: ({ id }) => {
+      return client.comment.findMany({
+        where: { photoId: id },
+        include: {
+          user: true,
+        },
+      });
     },
     isMine: ({ userId }, _, { loggedInUser }) => {
       if (!loggedInUser) {
