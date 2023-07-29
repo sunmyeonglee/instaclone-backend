@@ -10,6 +10,7 @@ const typeDefs = `#graphql
     updatedAt: String!
     likes: Int!
     isMine: Boolean!
+    isLiked: Boolean!
   }
   type Hashtag {
     id: Int!
