@@ -1,7 +1,7 @@
 const typeDefs = `#graphql
-  type Query {
-    seeFeed(lastId: Int): [Photo]
-  }
+type Query {
+  seeFeed(offset: Int!): [Photo]
+}
 
-`
-export default typeDefs
+`;
+export default typeDefs;
